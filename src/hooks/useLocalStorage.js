@@ -1,6 +1,6 @@
 import React from "react";
 
-export default useLocalStorage = (key) => {
+export  const useLocalStorage = (key) => {
     const setData = React.useCallback(( data) => {
         try {
             if (window !== undefined && key && data) {
@@ -13,7 +13,7 @@ export default useLocalStorage = (key) => {
         } catch (err) {
             throw new Error("LocalStorage :", err.message);
         }
-    }, [key , data]);
+    }, [key ]);
 
     const getData = React.useCallback(() => {
         try {

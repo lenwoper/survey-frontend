@@ -7,7 +7,6 @@ export const isPublicApi = (url) => {
   };
 
   export const stringifyError = (errors) => {
-    
     return errors;
   };
 
@@ -20,4 +19,4 @@ export const isPublicApi = (url) => {
   promise.then((data)=>({data:data,error:null}))
   .catch((error)=>({data:null,error:error}));
 
-  const isFunction =(fn)=> typeof fn ==='function';
+ export  const isFunction =(fn)=> typeof fn ==='function';

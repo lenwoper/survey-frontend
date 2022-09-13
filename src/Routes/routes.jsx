@@ -1,5 +1,6 @@
 import React from "react";
 import { Header } from "components";
+import Login from "pages/Login/Login";
 export const PublicRoutes = [
     {
         path: "/forget",
@@ -7,7 +8,7 @@ export const PublicRoutes = [
         
     },
     {
-        path: "/register",
+        path: "/login",
         component: <h1>register </h1> ,
         
     }, {
@@ -19,8 +20,8 @@ export const PublicRoutes = [
 
 export const PrivateRoutes = [
     {
-        path: "/home",
-        component: <Header/> ,
+        path: "/profile",
+        component: <Login/> ,
     },
     {
         path: "*",

@@ -6,7 +6,7 @@
         "@/pages/*": ["pages/*"],
         "@/constants/*":["constants/"],
         "@/style/*":["style/"],
-        "@/Component/*":["Component/"],
+        "@/components/*":["components/"],
         "@/Helper/*":["Helper/"],
         "@/utils/*":["utils/"],
         "@/api/*":["api/"],
