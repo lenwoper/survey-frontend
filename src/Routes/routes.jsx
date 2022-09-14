@@ -9,7 +9,7 @@ export const PublicRoutes = [
     },
     {
         path: "/login",
-        component: <h1>register </h1> ,
+        component: <Login/>,
         
     }, {
         path: "*",

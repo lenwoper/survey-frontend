@@ -1,14 +1,20 @@
 import React from "react";
-
-export default function CheckBox({ error, label, className , ...props }) {
+export default function CheckBox(
+  {
+    className,
+    name,
+    label,
+    labelClassName,
+    containerName,
+    ...props
+  }
+) {
   return (
     <React.Fragment>
-      <div className="form-control">
-        <label className="label cursor-pointer">
-          <span className={`label-text  ${className}`}>{label}</span>
-          <input type="checkbox"  className={`checkbox  `}  {...props}/>
-        </label>
+      <div className={`${containerName} flex justify-self-auto`}>
+        <span><input type="checkbox" {...props} name={name} className={`  ${className} checkbox`} /></span>
+        <label htmlFor="radio" className={` pl-2 ${labelClassName} `}>{label}</label>
       </div>
     </React.Fragment>
-  );
+  )
 }

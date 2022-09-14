@@ -1,3 +1,5 @@
+import avatar from "assets/avatar.png";
+
 export const isPublicApi = (url) => {
     const publicApiArray = [
       '/login/',
@@ -20,3 +22,5 @@ export const isPublicApi = (url) => {
   .catch((error)=>({data:null,error:error}));
 
  export  const isFunction =(fn)=> typeof fn ==='function';
+
+export const getImg =(slug)=>( slug?process.env.BASE_URL+slug:avatar);
