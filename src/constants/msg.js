@@ -1,0 +1,1 @@
+export const  API_MSG1="Somethings is wrong  ";
