@@ -76,7 +76,7 @@ export default function Navbar() {
       <div>
         {/* in mobile view  */}
         <div className={` top-[68px] transition-all h-[90vh] absolute z-[1] ${isMoboMenu ? 'w-full' : 'w-0'} overflow-hidden bg-[#0303037f] lg:hidden mb:hidden block `}>
-          <div className="bg-[#fff] w-[72%] h-full " id="mobile_menu">
+          <div className="bg-white w-[72%] h-full " id="mobile_menu">
           <NavLink to="" className={(isActive) => isActive ? '  hover:bg-primary-color ' : ''} > <li className=" py-1 border-b rounded-md list-none px-1 btn-ghost "><span>THEME</span></li></NavLink>
           </div>
         </div>
