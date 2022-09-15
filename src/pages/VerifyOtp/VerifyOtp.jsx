@@ -2,26 +2,25 @@ import React from 'react';
 import { FormProvider, useForm, Controller } from 'react-hook-form';
 import { TextInput, Button, Icon  } from 'components';
 import { useNavigate } from 'react-router-dom';
-import { AiOutlineMail } from 'react-icons/ai';
+import { RiLockPasswordLine } from 'react-icons/ri';
 import toast from 'react-hot-toast';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { forgetPasswordValidation } from 'utils/validation';
+import { verifyOtpValidation } from 'utils/validation';
+// notification toaster 
 
-
-export default function ForgetPassord() {
+export default function VerifyOtp() {
   const navigate = useNavigate();
 
   const methods = useForm({
-    resolver:yupResolver(forgetPasswordValidation),
+    resolver:yupResolver(verifyOtpValidation),
     mode: 'all',
   })
-
+  
   const { control, handleSubmit, formState: { isDirty, isValid } } = methods;
   const onSubmit = React.useCallback((data) => {
-    toast.success('Forget password has been sent in '+data?.email);
+    toast.success('Forget password has been sent in '+data?.otp);
     console.log(data);
-    navigate('/verify-otp');
-  }, [navigate]);
+  }, []);
 
   return (
     <div>
@@ -38,17 +37,17 @@ export default function ForgetPassord() {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-control">
                   <label className="label">
-                    <span className="label-text">Email</span>
+                    <span className="label-text">OTP</span>
                   </label>
                   <span>
                     <Controller
                       control={control}
-                      name="email"
+                      name="otp"
                       render={({
                         field,
                         fieldState: { invalid, isTouched, isDirty, error },
                       }) => (
-                        <TextInput type={"Email"} inputRef={field.ref} error={error} {...field} name={"email"} icon={<AiOutlineMail />} placeholder={"Email ID"} className={"w-full pl-6"} />
+                        <TextInput type={"string"} inputRef={field.ref} error={error} {...field} name={"otp"} icon={<RiLockPasswordLine />} placeholder={"VERIFY OTP"} className={"w-full pl-6"} />
                       )}
                     />
                   </span>
