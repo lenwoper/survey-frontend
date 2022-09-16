@@ -33,7 +33,7 @@ export default function Navbar() {
         <div className="navbar-center hidden lg:flex">
           {/* FOR DESKTOP MAP */}
           <ul className="menu menu-horizontal p-0">
-            <NavLink to="" className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>DASHBOARD</span></li></NavLink>
+            <NavLink to="/login" className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>DASHBOARD</span></li></NavLink>
             <NavLink to="" className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>FORM</span></li></NavLink>
             <NavLink to="" className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>USERS</span></li></NavLink>
             <NavLink to="" className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>FAQ</span></li></NavLink>

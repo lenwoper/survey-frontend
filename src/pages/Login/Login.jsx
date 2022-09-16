@@ -100,7 +100,7 @@ export default function Login() {
               <br/>
               <br/>
               <br/>
-              <div classsName="pt-"><span >Create New <span className="cursor-pointer" onClick={()=>navigate('/signup')}>Account</span> ?</span></div>
+              <div classsName="pt-"><span className='prose-base'>Create New <span className="cursor-pointer underline text-primary-color" onClick={()=>navigate('/signup')}>Account</span> ?</span></div>
             </div>
            
           </div>
