@@ -6,6 +6,8 @@ import Select from "./FormUtils/Select";
 import Radio from "./FormUtils/Radio";
 import TextArea from "./FormUtils/TextArea";
 import Icon from "./Icon/Icon";
+import FileUpload from "./FormUtils/FileUpload";
+import ProgressBar from "./ProgressBar/ProgressBar";
 export {
     Header,
     TextInput,
@@ -14,5 +16,7 @@ export {
     CheckBox,
     Select,
     TextArea,
-    Icon
+    Icon , 
+    FileUpload,
+    ProgressBar
 }

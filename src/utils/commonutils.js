@@ -1,4 +1,4 @@
-import avatar from "assets/avatar.png";
+// import avatar from "assets/avatar.png";
 
 export const isPublicApi = (url) => {
     const publicApiArray = [
@@ -23,4 +23,12 @@ export const isPublicApi = (url) => {
 
  export  const isFunction =(fn)=> typeof fn ==='function';
 
-export const getImg =(slug)=>( slug?process.env.BASE_URL+slug:avatar);
+export const getImg =(slug)=>( slug?process.env.BASE_URL+slug:'avatar');
+export const type = {
+  text: 'text',
+  radio: 'radio',
+  textarea: 'textarea',
+  file: 'file',
+  select: 'select',
+  checkbox: 'checkbox'
+}

@@ -1,10 +1,14 @@
 import React from 'react'
 
-export default function Select({selectionOption  , classsNam , ...props}) {
+export default function Select({
+  selectionOption  ,
+   classsNam ,
+   isRequired=false,
+    ...props}) {
   return (
   
     <div>
-      <select  {...props}   className={`select select-bordered w-full max-w-xs ${classsNam}`}>
+      <select  {...props}  required={isRequired} className={`select select-bordered w-full max-w-xs ${classsNam}`}>
       {
         selectionOption?
         selectionOption.map((item , index)=>(
