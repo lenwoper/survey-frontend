@@ -1,29 +1,18 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
-import { Select, Header , TextArea, Radio ,CheckBox} from "components";
-
-;
+import { Header } from "components";
+import { Toaster } from 'react-hot-toast';
 
 export default function Layout() {
 
-    return (
-        <div className="font-sans ">
-            <Header />
-          {
-            Array(4).fill().map((_ , index)=>(
-                <CheckBox key={index} name={"anem"} label={"Abhijeet kumar tell me "} />
-            ))
-          }
-
-
-                   {
-            Array(4).fill().map((_ , index)=>(
-                <Radio key={index} name={"anem"} label={"Abhijeet kumar tell me "} />
-            ))
-          }
-            <Select className={'w-[210px]'} selectionOption={["abhijeet", "country", "Rating "]} />
-            <TextArea className={'w-full'}  placeholder={"Requirment"} label={"Requirement"} />
-        </div>
-    );
+  return (
+    <div className="font-sans ">
+      <Toaster toastOptions={{
+       className: 'lg:text-sm md:text-sm text-xs lg:mt-[9%] md:mt-[12%] mt-[25%]',
+        style: {
+         border:"1px solid #c0c0c0"
+        },
+      }} />
+      <Header />
+    </div>
+  );
 }
-
