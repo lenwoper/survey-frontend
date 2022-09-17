@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "components";
 import { Toaster } from 'react-hot-toast';
-
+import 'react-circular-progressbar/dist/styles.css';
 export default function Layout() {
 
   return (

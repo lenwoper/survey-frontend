@@ -4,6 +4,7 @@ import Login from "pages/Login/Login";
 import VerifyOtp from "pages/VerifyOtp/VerifyOtp";
 import ForgetPassord from "pages/ForgetPassword/ForgetPassord";
 import Signup from "pages/Signup/Signup";
+import SurveyForm from './../pages/SurveyForm/SurveyForm';
 export const PublicRoutes = [
     {
         path: "/forget",
@@ -22,7 +23,7 @@ export const PublicRoutes = [
     },
      {
         path: "/login",
-        component: <Login/>,
+        component: <SurveyForm/>,
         
     },
       {
