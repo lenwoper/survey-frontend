@@ -31,4 +31,4 @@ export const type = {
   file: 'file',
   select: 'select',
   checkbox: 'checkbox'
-}
+};

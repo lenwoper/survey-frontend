@@ -36,7 +36,7 @@ const SurveyForm = () => {
         is_multiple: false,
         is_required: false,
         name: "myfile",
-        label: "test"
+        label: "What is monthly income here ?"
       }
     },
     {
@@ -45,7 +45,7 @@ const SurveyForm = () => {
         is_multiple: false,
         is_required: false,
         name: "cv",
-        label: "upload you cv here "
+        label: "Upload your cv ?"
       }
     },
     {
@@ -54,7 +54,7 @@ const SurveyForm = () => {
         is_multiple: false,
         is_required: false,
         name: "myfile",
-        label: "test"
+        label: "Youy name must be fill up here "
       }
     },
     {
@@ -134,138 +134,139 @@ const SurveyForm = () => {
           <FormProvider {...methods}>
             {
               formData.length < formUnit ? (
-                <AfterSubmittion />
+                <AfterSubmittion percenatge={((progressTracking / formData.length) * 100) ?? 0} />
               ) : (
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <components.ProgressBar width={((progressTracking / formData.length) * 100) ?? 0} />
-                  {
-                    formData.slice(formUnit - 1, formUnit)?.map((dom, index) => {
-                      if (dom.type === type.text) {
-                        return (
-                          <div key={index}>
-                            <Controller
-                              control={control}
-                              name={dom?.data?.name}
-                              render={({
-                                field,
-                                fieldState: { invalid, isTouched, isDirty, error },
-                              }) => (
-                                <components.TextInput {...field} type={'text'} inputRef={field.ref} />
-                              )} />
-                          </div>
+                <div className="grid h-[70vh]">
+                  <form className="m-auto lg:w-[60%] md:w-[70%] w-[98%] bg-[#ebe9e6]  p-3 rounded-md" onSubmit={handleSubmit(onSubmit)}>
+                    <components.ProgressBar width={((progressTracking / formData.length) * 100) ?? 0} />
+                    {
+                      formData.slice(formUnit - 1, formUnit)?.map((dom, index) => {
+                        if (dom.type === type.text) {
+                          return (
+                            <div key={index}>
+                              {dom?.data?.label && (<label htmlFor="textInput">{dom?.data?.label}</label>)}
+                              <Controller
+                                control={control}
+                                name={dom?.data?.name}
+                                render={({
+                                  field,
+                                  fieldState: { invalid, isTouched, isDirty, error },
+                                }) => (
+                                  <components.TextInput {...field} type={'text'} inputRef={field.ref} />
+                                )} />
+                            </div>
 
-                        )
-                      }
-                      if (dom.type === type.radio) {
-                        return (
-                          <div key={index}>
-                            <label>{dom?.des}</label>
-                            {
-                              dom?.data?.map((domSec) => (
-                                <div >
-                                  <Controller
-                                    control={control}
-                                    name={domSec?.name}
-                                    render={({
-                                      field,
-                                      fieldState: { invalid, isTouched, isDirty, error },
-                                    }) => (
-                                      <components.Radio inputRef={field.ref} {...field} value={domSec?.value} label={domSec?.label} />
-                                    )} />
-                                </div>
-                              ))
-                            }
-                          </div>
-                        )
-                      }
-                      if (dom.type === type.checkbox) {
-                        return (
-                          <div key={index}>
-                            <label>{dom?.des}</label>
-                            {
-                              dom?.data?.map((domSec) => (
-                                <div >
-                                  <Controller
-                                    control={control}
-                                    name={domSec?.name}
-                                    render={({
-                                      field,
-                                      fieldState: { invalid, isTouched, isDirty, error },
-                                    }) => (
-                                      <components.CheckBox inputRef={field.ref} {...field} value={domSec?.value} label={domSec?.label} />
-                                    )} />
-                                </div>
-                              ))
-                            }
-                          </div>
+                          )
+                        }
+                        if (dom.type === type.radio) {
+                          return (
+                            <div key={index}>
+                              <label htmlFor="htmlForm">{dom?.des}</label>
+                              {
+                                dom?.data?.map((domSec) => (
+                                  <div >
+                                    <Controller
+                                      control={control}
+                                      name={domSec?.name}
+                                      render={({
+                                        field,
+                                        fieldState: { invalid, isTouched, isDirty, error },
+                                      }) => (
+                                        <components.Radio inputRef={field.ref} {...field} value={domSec?.value} label={domSec?.label} />
+                                      )} />
+                                  </div>
+                                ))
+                              }
+                            </div>
+                          )
+                        }
+                        if (dom.type === type.checkbox) {
+                          return (
+                            <div key={index}>
+                              <label>{dom?.des}</label>
+                              {
+                                dom?.data?.map((domSec) => (
+                                  <div >
+                                    <Controller
+                                      control={control}
+                                      name={domSec?.name}
+                                      render={({
+                                        field,
+                                        fieldState: { invalid, isTouched, isDirty, error },
+                                      }) => (
+                                        <components.CheckBox inputRef={field.ref} {...field} value={domSec?.value} label={domSec?.label} />
+                                      )} />
+                                  </div>
+                                ))
+                              }
+                            </div>
 
-                        )
-                      }
-                      if (dom.type === type.textarea) {
-                        return (
-                          <div key={index}>
-                            <Controller
-                              control={control}
-                              name={dom?.data?.name}
-                              render={({
-                                field,
-                                fieldState: { invalid, isTouched, isDirty, error },
-                              }) => (
-                                <components.TextArea className={`w-full`}  {...field} />
-                              )} />
-                          </div>
-                        )
-                      }
-                      if (dom.type === type.file) {
-                        return (
-                          <div key={index}>
-                            {dom?.data?.label}
-                            <Controller
-                              control={control}
-                              name={dom?.data?.name}
-                              render={({
-                                field,
-                                fieldState: { invalid, isTouched, isDirty, error },
-                              }) => (
-                                <components.FileUpload {...field} />
-                              )} />
-                          </div>
-                        )
-                      }
-                      if (dom.type === type.select) {
-                        return (
-                          <div key={index}>
-                            {dom?.data?.label}
-                            <Controller
-                              control={control}
-                              name={dom?.data?.name}
-                              render={({
-                                field,
-                                fieldState: { invalid, isTouched, isDirty, error },
-                              }) => (
-                                <components.Select className={``} selectionOption={dom?.data?.selectBoxOption} isRequired={true} {...field} />
-                              )} />
-                          </div>
-                        )
-                      } else {
-                        return (<h1>something gone wrong </h1>)
-                      }
-                    })
+                          )
+                        }
+                        if (dom.type === type.textarea) {
+                          return (
+                            <div key={index}>
+                              <Controller
+                                control={control}
+                                name={dom?.data?.name}
+                                render={({
+                                  field,
+                                  fieldState: { invalid, isTouched, isDirty, error },
+                                }) => (
+                                  <components.TextArea className={`w-full`} label={dom?.data?.label} {...field} />
+                                )} />
+                            </div>
+                          )
+                        }
+                        if (dom.type === type.file) {
+                          return (
+                            <div key={index}>
+                              {dom?.data?.label}
+                              <Controller
+                                control={control}
+                                name={dom?.data?.name}
+                                render={({
+                                  field,
+                                  fieldState: { invalid, isTouched, isDirty, error },
+                                }) => (
+                                  <components.FileUpload {...field} />
+                                )} />
+                            </div>
+                          )
+                        }
+                        if (dom.type === type.select) {
+                          return (
+                            <div key={index}>
+                              {dom?.data?.label}
+                              <Controller
+                                control={control}
+                                name={dom?.data?.name}
+                                render={({
+                                  field,
+                                  fieldState: { invalid, isTouched, isDirty, error },
+                                }) => (
+                                  <components.Select className={``} selectionOption={dom?.data?.selectBoxOption} isRequired={true} {...field} />
+                                )} />
+                            </div>
+                          )
+                        } else {
+                          return (<h1>something gone wrong </h1>)
+                        }
+                      })
 
-                  }
-
-                  <div>
+                    }
+                      <div className="flex justify-end mt-3">
+                        <span className="mx-2">
+                          <components.Button type="button" onClick={() => formUnitFunction(formUnit)} className={`m-auto lg:btn-sm md:btn-sm  btn-sm bg-primary-color rounded-lg w-[120px]`} text={`SKIP`} isLoading={false} isDisabled={false} />
+                        </span>
+                        <span className="mx-2">
+                          <components.Button type="submit" className={`m-auto lg:btn-sm md:btn-sm btn-sm bg-primary-color rounded-lg w-[120px]`} text={`NEXT`} isLoading={false} isDisabled={false} />
+                        </span>
+                      </div>
                     <div>
-                      <components.Button type="submit" className={`m-auto bg-primary-color rounded-full w-[180px]`} text={`NEXT`} isLoading={false} isDisabled={false} />
                     </div>
-                    <div>
-                      <components.Button type="button" onClick={() => formUnitFunction(formUnit)} className={`m-auto bg-primary-color rounded-full w-[180px]`} text={`SKIP`} isLoading={false} isDisabled={false} />
-                    </div>
-                  </div>
-
-                  <div>
-                  </div>
-                </form>
+                  </form>
+                </div>
               )
             }
 
