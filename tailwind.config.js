@@ -33,6 +33,9 @@ module.exports = {
             '4xl': '2rem',
           }, 
         
+        },
+        height:{
+          '92VH':'92vh'
         }
       },
    

@@ -1,10 +1,9 @@
 import React from 'react'
-import { Button } from "components"
-import { NavLink , Outlet} from "react-router-dom"
+import { Button ,Icon } from "components"
+import { NavLink , Outlet} from "react-router-dom";
+import { logo1 } from 'Assets';
 export default function Navbar() {
   const [isMoboMenu, SetMoboMenu] = React.useState(false);
-
-
   document.addEventListener('mouseup',(e) => {
     try {
       const mobile_menu = document.getElementById('mobile_menu');
@@ -28,7 +27,8 @@ export default function Navbar() {
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </label>
           </div>
-          <span className="btn btn-ghost normal-case text-xl">Sacoda Serv</span>
+          <span className="btn btn-ghost normal-case text-xl"> 
+           <Icon className={'w-[80px] h-auto'} src={logo1} alt="loading..."/></span>
         </div>
         <div className="navbar-center hidden lg:flex">
           {/* FOR DESKTOP MAP */}
@@ -67,7 +67,6 @@ export default function Navbar() {
                   text={"Sign"}
                   className={"bg-primary-color btn-sm py-1 w-[120px]"}
                 />
-
               )
             }
           </div>
