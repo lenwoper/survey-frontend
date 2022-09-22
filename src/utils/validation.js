@@ -32,4 +32,7 @@ export const verifyOtpValidation = yup.object({
     otp:yup.string().min(6).max(8 , " Invalid size ").required()
 })
 
+export const subscribeValidation = yup.object({
+    email:yup.string().email().required()
+})
 

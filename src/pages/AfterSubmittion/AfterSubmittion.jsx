@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'components';
 import { useNavigate } from 'react-router-dom';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import envelope from "Assets/envelope.png";
 export default function AfterSubmittion({ percenatge }) {
   const navigate = useNavigate();
   return (
@@ -16,7 +17,7 @@ export default function AfterSubmittion({ percenatge }) {
             </div>
           </div>
           <div className="">
-            <img src="https://play-lh.googleusercontent.com/mVgXol6gGP21dOZDcowB98ttq-592tcZV7GEz6K8fEaKuySAkQTamNIkA4M4Q5SjGQ" alt="loading..." className="lg:w-[320px] md:w-[280px] w-[220px] h-auto" />
+            <img src={envelope} alt="loading..." className="lg:w-[220px] md:w-[220px] w-[180px] h-auto" />
           </div>
           <div>
           </div>

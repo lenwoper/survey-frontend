@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { verifyOtpValidation } from 'utils/validation';
 // notification toaster 
-import { logo1 } from 'Assets';
+import logo1 from 'Assets/admin-logo-01.png'
 export default function VerifyOtp() {
   const navigate = useNavigate();
 

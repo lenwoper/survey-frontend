@@ -1,16 +1,15 @@
 import axios from "axios";
 import qs from 'qs';
-import { baseURL } from "constants/config.constants";
 import { 
       getLocalStorage,
   isPublicApi,
   stringifyError,
  } from "utils/commonutils";
  import { AUTH_TOKEN } from "constants/localstorageconst";
+const baseURL = 'https://serv.tiwari.cc/api';
 const axiosConfig = {
   baseURL,
 };
-
 export const METHODS = {
   GET: "get",
   DELETE: "delete",
@@ -151,3 +150,6 @@ function paramsSerializer(params) {
 }
 
 export default client;
+
+
+

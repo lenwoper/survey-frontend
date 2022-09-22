@@ -4,36 +4,44 @@ import Login from "pages/Login/Login";
 import VerifyOtp from "pages/VerifyOtp/VerifyOtp";
 import ForgetPassord from "pages/ForgetPassword/ForgetPassord";
 import Signup from "pages/Signup/Signup";
-import SurveyForm from './../pages/SurveyForm/SurveyForm';
+import SurveyForm from 'pages/SurveyForm/SurveyForm';
+import Subscribe from "pages/Subscribe/Subscribe";
 export const PublicRoutes = [
     {
         path: "/forget",
-        component: <Header/> ,
-        
+        component: <Header />,
+
     },
     {
         path: "/verify-otp",
-        component: <VerifyOtp/>,
-        
+        component: <VerifyOtp />,
+
     },
     {
         path: "/forget-password",
-        component: <ForgetPassord/>,
-        
+        component: <ForgetPassord />,
+
     },
-     {
+    {
         path: "/login",
-        component: <SurveyForm/>,
-        
+        component: <Login />,
+
     },
-      {
+    {
         path: "/signup",
-        component: <Signup/>,
-        
+        component: <Signup />,
+
+    }, {
+        path: '/form',
+        component: <SurveyForm />
     },
-     {
+    {
+        path: "/subscribe",
+        component: <Subscribe />
+    },
+    {
         path: "*",
-        component: <h1>not found </h1> ,
+        component: <h1>not found </h1>,
     },
 
 ];
@@ -41,10 +49,10 @@ export const PublicRoutes = [
 export const PrivateRoutes = [
     {
         path: "/profile",
-        component: <Login/> ,
+        component: <Login />,
     },
     {
         path: "*",
-        component: <h1>now found </h1> ,
+        component: <h1>now found </h1>,
     },
 ];

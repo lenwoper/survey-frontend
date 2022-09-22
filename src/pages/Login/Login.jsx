@@ -6,9 +6,12 @@ import { FormProvider, useForm, Controller } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginValidation } from 'utils/validation';
-import { logo1, background2 } from 'Assets';
+import logo1 from 'Assets/admin-logo-01.png';
+import background2 from 'Assets/admin-bg.png';
+import { useAuth } from 'hooks';
 export default function Login() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const methods = useForm({
     resolver: yupResolver(loginValidation),
     mode: "all"
@@ -17,7 +20,7 @@ export default function Login() {
     formState: { isDirty, isValid } } = methods;
 
   const onSubmit = (data) => {
-    console.log(data)
+    login(data);
   }
   return (
     <React.Fragment>
@@ -92,7 +95,9 @@ export default function Login() {
                     </div>
                   </div>
                   <div className="form-control mt-6">
-                    <Button className={`w-full bg-primary-color`} text={`login`} isLoading={false} isDisabled={!isDirty || !isValid}>Login</Button>
+                    <Button className={`w-full bg-primary-color`} text={`login`} isLoading={false}
+                     isDisabled={!isDirty || !isValid}
+                     >Login</Button>
                   </div>
                 </form>
               </FormProvider>

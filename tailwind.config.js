@@ -19,6 +19,7 @@ module.exports = {
           'gray-dark': '#273444',
           'gray': '#8492a6',
           'gray-light': '#d3dce6',
+          '#D9D9D9':'#D9D9D9'
         },
         fontFamily: {
           sans: ['Graphik', 'sans-serif'],
@@ -35,7 +36,7 @@ module.exports = {
         
         },
         height:{
-          '92VH':'92vh'
+          '92VH':'92vh',
         }
       },
    

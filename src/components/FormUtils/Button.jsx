@@ -3,7 +3,7 @@ import React from 'react'
 export default function Button({
   isDisabled ,
    text, 
-   isLoading , 
+   isLoading = false , 
    className,
    type="submit",
    conaitnerClass,

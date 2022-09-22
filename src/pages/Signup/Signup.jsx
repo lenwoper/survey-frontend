@@ -6,7 +6,8 @@ import { FormProvider, useForm, Controller } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { resgisterValidation } from 'utils/validation';
-import { logo1 , background1 } from 'Assets';
+import backgroundSignup from 'Assets/background.png';
+import logo1 from 'Assets/admin-logo-01.png'
 export default function Signup() {
   const navigate = useNavigate();
   const methods = useForm({
@@ -21,15 +22,14 @@ export default function Signup() {
   });
   const { control, handleSubmit,
     formState: { isDirty, isValid } } = methods;
-
   const onSubmit = (data) => {
     console.log(data)
   }
+
   return (
     <React.Fragment>
       <div className='grid lg:grid-cols-2 md:grid-cols-2 h-92VH grid-cols-1'>
-        <div className="lg:inline  hidden " style={{ backgroundImage: `url(${background1})` }}>
-
+        <div className="lg:inline  hidden " style={{ backgroundImage: `url(${backgroundSignup})` }}>
         </div>
         <div className="grid">
           <div className="m-auto lg:w-[75%] md:w-[80%] w-[90%]">
