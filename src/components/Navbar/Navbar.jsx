@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button ,Icon } from "components"
 import { NavLink , Outlet} from "react-router-dom";
-import { logo1 } from 'Assets';
+import logo2 from 'Assets/admin-logo-02.png';
+import { navbarRoutesLink } from 'utils/commonutils';
 export default function Navbar() {
   const [isMoboMenu, SetMoboMenu] = React.useState(false);
   document.addEventListener('mouseup',(e) => {
@@ -28,18 +29,17 @@ export default function Navbar() {
             </label>
           </div>
           <span className="btn btn-ghost normal-case text-xl"> 
-           <Icon className={'w-[80px] h-auto'} src={logo1} alt="loading..."/></span>
+           <Icon className={'w-[160px] h-auto'} src={logo2} alt="loading..."/></span>
         </div>
         <div className="navbar-center hidden lg:flex">
           {/* FOR DESKTOP MAP */}
           <ul className="menu menu-horizontal p-0">
-            <NavLink to="/login" className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>DASHBOARD</span></li></NavLink>
-            <NavLink to="" className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>FORM</span></li></NavLink>
-            <NavLink to="" className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>USERS</span></li></NavLink>
-            <NavLink to="" className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>FAQ</span></li></NavLink>
-            <NavLink to="" className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>THEME</span></li></NavLink>
-
-          </ul>
+            {
+              navbarRoutesLink?.map((routesLink , index )=>(
+                <NavLink to={routesLink?.route_link} key={index} className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>{routesLink?.route_name}</span></li></NavLink>
+              ))
+            }
+         </ul>
         </div>
         <div className="navbar-end">
           <div className="flex-none gap-2">
@@ -76,8 +76,12 @@ export default function Navbar() {
         {/* in mobile view  */}
         <div className={` top-[68px] transition-all h-[90vh] absolute z-[1] ${isMoboMenu ? 'w-full' : 'w-0'} overflow-hidden bg-[#0303037f] lg:hidden mb:hidden block `}>
           <div className="bg-white w-[72%] h-full " id="mobile_menu">
-          <NavLink to="" className={(isActive) => isActive ? '  hover:bg-primary-color ' : ''} > <li className=" py-1 border-b rounded-md list-none px-1 btn-ghost "><span>THEME</span></li></NavLink>
-          </div>
+         {
+          navbarRoutesLink?.map((ruteLink , index)=>(
+            <NavLink to={ruteLink?.route_link} className={(isActive) => isActive ? '  hover:bg-primary-color ' : ''} > <li className=" py-1 border-b rounded-md list-none px-1 btn-ghost "><span>{ruteLink?.route_name}</span></li></NavLink>
+          ))
+         }
+       </div>
         </div>
       </div>
       <Outlet/>
