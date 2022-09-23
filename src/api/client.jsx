@@ -6,7 +6,7 @@ import {
   stringifyError,
  } from "utils/commonutils";
  import { AUTH_TOKEN } from "constants/localstorageconst";
-const baseURL = 'https://serv.tiwari.cc/api';
+const baseURL = 'https://serv.tiwari.cc';
 const axiosConfig = {
   baseURL,
 };

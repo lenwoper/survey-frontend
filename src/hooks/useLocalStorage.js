@@ -12,22 +12,21 @@ export const useLocalStorage = (key) => {
         }
     }, [key]);
 
-    const getData = React.useCallback(() => {
+    const getData = React.useCallback((key_) => {
         try {
-            if (window !== undefined && key) {
-                const data = localStorage.getItem(key);
+            if (window !== undefined && key_) {
+                const data = localStorage.getItem(key_);
                 return data ? JSON.parse(data) : null
             } else {
-                return { msg: { key: key, window: window } };
+                return { msg: { key: key_, window: window } };
             }
         } catch (err) {
             throw new Error("LocalStorage :", err.message);
         }
-    }, [key]);
+    }, []);
 
     return {
         setData,
         getData,
-       
     }
 };

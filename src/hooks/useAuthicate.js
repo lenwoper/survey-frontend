@@ -1,7 +1,9 @@
 import React from "react";
 import { useLocalStorage } from './useLocalStorage';
 import { useFetch } from 'hooks';
-import { AUTH_TOKEN } from "constants/localstorageconst";
+import { AUTH_TOKEN, USER_DETAILS } from "constants/localstorageconst";
+import toast from 'react-hot-toast';
+
 /*
  * session 
  * isloading login
@@ -11,13 +13,16 @@ import { AUTH_TOKEN } from "constants/localstorageconst";
  * logout 
  */
 export const useAuth = () => {
-  const { getData, setData } = useLocalStorage();
- const session = getData(AUTH_TOKEN);
+  const { getData, setData } = useLocalStorage(AUTH_TOKEN);
+  const { getData: getUser, setData: setUser } = useLocalStorage(USER_DETAILS);
+  const session = getData(AUTH_TOKEN);
   const [hasError, SetHasError] = React.useState(null);
 
   const onSuccess = React.useCallback((response) => {
-    setData(AUTH_TOKEN, response);
-  }, [setData]);
+    setData(response.token);
+    setUser(response?.user);
+    toast.success(response?.message);
+  }, [setData, setUser]);
   const onFailure = React.useCallback((errors) => {
     SetHasError(errors)
   }, []);
@@ -30,32 +35,41 @@ export const useAuth = () => {
   }, [])
 
   const { isLoading, callFetch } = useFetch({
-    initialUrl: "/api/login/",
+    initialUrl: "/api/login",
     skipOnStart: true,
     onFailure,
     onSuccess,
   });
 
   const login = React.useCallback((data) => {
+
     const formData = new FormData();
-    formData.append('email', data.email);
-    formData.append('password', data.password);
+    formData.append("username", data.email);
+    formData.append("password", data.password);
     callFetch({
-      url: "/login/",
+      url: "/api/login",
       method: "post",
-      data: [formData],
+      data: { email: data.email, password: data.password },
     });
 
   }, [callFetch])
 
-
-
+  const logout = React.useCallback(() => {
+    try {
+      localStorage.clear();
+      toast.success('Has been logout ');
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }, [])
 
 
   return {
     session,
     signup,
+    logout,
     login,
+    getUser,
     hasError,
     isLoading
   }
