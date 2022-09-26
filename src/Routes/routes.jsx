@@ -31,13 +31,6 @@ export const PublicRoutes = [
         path: "/signup",
         component: <Signup />,
 
-    }, {
-        path: '/form',
-        component: <SurveyForm />
-    },
-    {
-        path: "/subscribe",
-        component: <Subscribe />
     },
     {
         path: "*",
@@ -48,8 +41,16 @@ export const PublicRoutes = [
 
 export const PrivateRoutes = [
     {
-        path: "/profile",
-        component: <Login />,
+        path: "/",
+        component:<SurveyForm/>,
+    },
+    {
+        path: '/form',
+        component: <SurveyForm />
+    },
+    {
+        path: "/subscribe",
+        component: <Subscribe />
     },
     {
         path: "*",

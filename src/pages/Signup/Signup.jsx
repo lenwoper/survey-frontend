@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, TextInput, CheckBox , Icon } from 'components'
+import { Button, TextInput, CheckBox, Icon } from 'components'
 import { AiOutlineMail } from 'react-icons/ai';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { FormProvider, useForm, Controller } from "react-hook-form";
@@ -8,27 +8,34 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { resgisterValidation } from 'utils/validation';
 import backgroundSignup from 'Assets/background.png';
 import logo1 from 'Assets/admin-logo-01.png'
+import { useAuth } from 'hooks';
 export default function Signup() {
+  const { signup, hasError ,  isLoading} = useAuth();
   const navigate = useNavigate();
+
   const methods = useForm({
-    resolver:yupResolver(resgisterValidation),
+    resolver: yupResolver(resgisterValidation),
     mode: "all",
-    defaultValues:{
-      Name:"",
-      email:"",
-      password:"",
-      confirm_password:"",
+    defaultValues: {
+      Name: "",
+      email: "",
+      password: "",
+      confirm_password: "",
     }
   });
-  const { control, handleSubmit,
+  const { control, handleSubmit,setError ,
     formState: { isDirty, isValid } } = methods;
-  const onSubmit = (data) => {
-    console.log(data)
-  }
+  const onSubmit = React.useCallback((data) => {
+    signup(data);
+  }, [signup])
+
+  React.useEffect(() => {
+    setError('email',hasError);
+  }, [hasError, setError])
 
   return (
     <React.Fragment>
-      <div className='grid lg:grid-cols-2 md:grid-cols-2 h-92VH grid-cols-1'>
+      <div className='grid lg:grid-cols-2 md:grid-cols-2 h-[100vh] grid-cols-1'>
         <div className="lg:inline  hidden " style={{ backgroundImage: `url(${backgroundSignup})` }}>
         </div>
         <div className="grid">
@@ -36,12 +43,12 @@ export default function Signup() {
             <div className="card-body">
               <div className="grid">
                 <div className="m-auto">
-                  <Icon className={'w-[120px] h-auto'} src={logo1} alt="loading..."/>
+                  <Icon className={'w-[120px] h-auto'} src={logo1} alt="loading..." />
                 </div>
               </div>
               <FormProvider {...methods}>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="form-control">
+                  <div className="form-control">
                     <label className="label">
                       <span className="label-text">Name</span>
                     </label>
@@ -70,7 +77,7 @@ export default function Signup() {
                           field,
                           fieldState: { invalid, isTouched, isDirty, error },
                         }) => (
-                          <TextInput type={"Email"} inputRef={field.ref} error={error} {...field} name={"email"} icon={<AiOutlineMail />} placeholder={"Email ID"} className={"w-full pl-6"} />
+                          <TextInput type={"Email"} inputRef={field.ref} error={error } {...field} name={"email"} icon={<AiOutlineMail />} placeholder={"Email ID"} className={"w-full pl-6"} />
                         )}
                       />
                     </span>
@@ -110,30 +117,30 @@ export default function Signup() {
                     </span>
                     <div className="flex  justify-between">
                       <label className="label">
-                        <span className="label-text-alt link link-hover" onClick={()=>navigate('/login')}>Have aleardy account ?</span>
+                        <span className="label-text-alt link link-hover" onClick={() => navigate('/login')}>Have aleardy account ?</span>
                       </label>
                       <div className="flex justify-between">
                         <div className="">
                           <span className="text-xs">Rember me </span>
                         </div>
                         <div className="pt-1 pl-1">
-                        <Controller
-                        control={control}
-                        name="remberme"
-                        render={({
-                          field,
-                          fieldState: { invalid, isTouched, isDirty, error },
-                        }) => (
-                          <CheckBox {...field}  inputRef={field.ref}  name={"remberme"} className={`checkbox-sm`}  />
-                        )}
-                      />
+                          <Controller
+                            control={control}
+                            name="remberme"
+                            render={({
+                              field,
+                              fieldState: { invalid, isTouched, isDirty, error },
+                            }) => (
+                              <CheckBox {...field} inputRef={field.ref} name={"remberme"} className={`checkbox-sm`} />
+                            )}
+                          />
                         </div>
 
                       </div>
                     </div>
                   </div>
                   <div className="form-control mt-6">
-                    <Button className={`w-full bg-primary-color`} text={`login`} isLoading={false} isDisabled={!isDirty || !isValid}>SIGN UP</Button>
+                    <Button className={`w-full bg-primary-color`} text={`login`} isLoading={isLoading} isDisabled={!isDirty || !isValid}>SIGN UP</Button>
                   </div>
                 </form>
               </FormProvider>

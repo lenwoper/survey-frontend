@@ -1,30 +1,33 @@
 import React from 'react';
 import { FormProvider, useForm, Controller } from 'react-hook-form';
-import { TextInput, Button, Icon  } from 'components';
+import { TextInput, Button, Icon } from 'components';
 import { useNavigate } from 'react-router-dom';
 import { RiLockPasswordLine } from 'react-icons/ri';
-import toast from 'react-hot-toast';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { verifyOtpValidation } from 'utils/validation';
+import { useAuth } from 'hooks';
 // notification toaster 
 import logo1 from 'Assets/admin-logo-01.png'
 export default function VerifyOtp() {
   const navigate = useNavigate();
-
+  const { verifyToken, isLoading, hasError } = useAuth();
   const methods = useForm({
-    resolver:yupResolver(verifyOtpValidation),
+    resolver: yupResolver(verifyOtpValidation),
     mode: 'all',
   })
-  
-  const { control, handleSubmit, formState: { isDirty, isValid } } = methods;
+
+  const { control, handleSubmit,setError , formState: { isDirty, isValid } } = methods;
   const onSubmit = React.useCallback((data) => {
-    toast.success('Forget password has been sent in '+data?.otp);
-    console.log(data);
-  }, []);
+    verifyToken(data);
+  }, [verifyToken]);
+
+  React.useCallback(() => {
+    setError(hasError);
+  }, [hasError, setError])
 
   return (
     <div>
-      <div className='grid h-[90vh] '>
+      <div className='grid h-[100vh] '>
         <div className='m-auto'>
           <div className="card-body border-secondry-color border rounded-xl lg:w-[390px] md:w-[360px] w-full drop-shadow-sm " >
             <div className="grid">
@@ -55,7 +58,7 @@ export default function VerifyOtp() {
                   </label>
                 </div>
                 <div className="form-control mt-2">
-                  <Button className={`w-full bg-primary-color`} text={`login`} isLoading={false} isDisabled={!isDirty || !isValid}>Login</Button>
+                  <Button className={`w-full bg-primary-color`} text={`login`} isLoading={isLoading} isDisabled={!isDirty || !isValid}>Login</Button>
                 </div>
               </form>
             </FormProvider>
