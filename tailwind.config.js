@@ -37,6 +37,7 @@ module.exports = {
         },
         height:{
           '92VH':'92vh',
+          'progress-height':'12px'
         }
       },
    

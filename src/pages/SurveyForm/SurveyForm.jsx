@@ -136,7 +136,7 @@ const SurveyForm = () => {
               formData.length < formUnit ? (
                 <AfterSubmittion percenatge={((progressTracking / formData.length) * 100) ?? 0} />
               ) : (
-                <div className="grid h-[70vh]">
+                <div className="grid h-[90vh]">
                   <form className="m-auto lg:w-[60%] md:w-[70%] w-[98%] bg-[#ebe9e6]  p-3 rounded-md" onSubmit={handleSubmit(onSubmit)}>
                     <components.ProgressBar width={((progressTracking / formData.length) * 100) ?? 0} />
                     {

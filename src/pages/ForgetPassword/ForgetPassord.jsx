@@ -3,29 +3,31 @@ import { FormProvider, useForm, Controller } from 'react-hook-form';
 import { TextInput, Button, Icon  } from 'components';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineMail } from 'react-icons/ai';
-import toast from 'react-hot-toast';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { forgetPasswordValidation } from 'utils/validation';
-import logo1 from 'Assets/admin-logo-01.png'
+import logo1 from 'Assets/admin-logo-01.png';
+import { useAuth } from 'hooks';
 
 export default function ForgetPassord() {
   const navigate = useNavigate();
-
+const {forgetPassword ,hasError} =useAuth()
   const methods = useForm({
     resolver:yupResolver(forgetPasswordValidation),
     mode: 'all',
   })
 
-  const { control, handleSubmit, formState: { isDirty, isValid } } = methods;
+  const { control, handleSubmit,setError ,  formState: { isDirty, isValid } } = methods;
   const onSubmit = React.useCallback((data) => {
-    toast.success('Forget password has been sent in '+data?.email);
-    console.log(data);
-    navigate('/verify-otp');
-  }, [navigate]);
+    forgetPassword(data)
+  }, [forgetPassword]);
+
+  React.useEffect(()=>{
+    setError('email',hasError);
+  }, [setError , hasError])
 
   return (
     <div>
-      <div className='grid h-[90vh] '>
+      <div className='grid h-[100vh] '>
         <div className='m-auto'>
           <div className="card-body border-secondry-color border rounded-xl lg:w-[390px] md:w-[360px] w-full drop-shadow-sm " >
             <div className="grid">

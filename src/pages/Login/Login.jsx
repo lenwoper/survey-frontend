@@ -11,20 +11,25 @@ import background2 from 'Assets/admin-bg.png';
 import { useAuth } from 'hooks';
 export default function Login() {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, hasError ,  isLoading}= useAuth();
   const methods = useForm({
     resolver: yupResolver(loginValidation),
     mode: "all"
   });
-  const { control, handleSubmit,
-    formState: { isDirty, isValid } } = methods;
+  const { control, handleSubmit,setError ,
+    formState: { isDirty, isValid }
+   } = methods;
 
-  const onSubmit = (data) => {
+  const onSubmit = React.useCallback((data)=>{
     login(data);
-  }
+  } , [login]);
+
+  React.useEffect(()=>{
+    setError('email', hasError );
+  } , [setError , hasError])
   return (
     <React.Fragment>
-      <div className='grid lg:grid-cols-2 md:grid-cols-2 h-92VH grid-cols-1'>
+      <div className='grid lg:grid-cols-2 md:grid-cols-2 h-[100vh] grid-cols-1'>
         <div className="lg:inline hidden" style={{ backgroundImage: `url(${background2})` }}>
         </div>
         <div className="grid">
@@ -95,7 +100,7 @@ export default function Login() {
                     </div>
                   </div>
                   <div className="form-control mt-6">
-                    <Button className={`w-full bg-primary-color`} text={`login`} isLoading={false}
+                    <Button className={`w-full bg-primary-color`} text={`login`} isLoading={isLoading}
                      isDisabled={!isDirty || !isValid}
                      >Login</Button>
                   </div>

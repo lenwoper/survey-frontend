@@ -1,29 +1,29 @@
 import React from "react";
-export const useLocalStorage = (key) => {
-    const setData = React.useCallback((data) => {
+export const useLocalStorage = () => {
+    const setData = React.useCallback((key, data) => {
         try {
             if (window !== undefined && key && data) {
                 localStorage.setItem(key, JSON.stringify(data));
             } else {
-                return { msg: { key: key, data: data, window: window } };
+                return undefined ;
             }
         } catch (err) {
             throw new Error("LocalStorage :", err.message);
         }
-    }, [key]);
+    }, []);
 
-    const getData = React.useCallback(() => {
+    const getData = React.useCallback((key) => {
         try {
             if (window !== undefined && key) {
                 const data = localStorage.getItem(key);
                 return data ? JSON.parse(data) : null
             } else {
-                return { msg: { key: key, window: window } };
+                return undefined;
             }
         } catch (err) {
             throw new Error("LocalStorage :", err.message);
         }
-    }, [key]);
+    }, []);
 
     return {
         setData,
