@@ -18,7 +18,6 @@ export const useAuth = () => {
   const { getData, setData } = useLocalStorage();
   const session = getData(AUTH_TOKEN);
   const userDetails = getData(USER_DETAILS);
-  const [hasError, SetHasError] = React.useState(null);
 
   const onSuccess = React.useCallback((response) => {
     if (response?.token) {
@@ -33,8 +32,7 @@ export const useAuth = () => {
     }
   }, [setData, navigate]);
   const onFailure = React.useCallback((errors) => {
-    SetHasError(errors);
-    toast.error(errors?.message);
+    toast.error(errors);
   }, []);
 
   const { isLoading, callFetch } = useFetch({
@@ -96,7 +94,6 @@ export const useAuth = () => {
     logout,
     login,
     forgetPassword,
-    hasError,
     isLoading
   }
 }

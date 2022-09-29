@@ -1,4 +1,4 @@
-// import avatar from "assets/avatar.png";
+import Avatar from 'Assets/avatar.png'
 export const baseURL ='https://serv.tiwari.cc';
 export const isPublicApi = (url) => {
   const publicApiArray = [
@@ -22,7 +22,7 @@ export const asyncWrapper = (promise) =>
 
 export const isFunction = (fn) => typeof fn === 'function';
 
-export const getImg = (slug) => (slug ? process.env.BASE_URL + slug : 'avatar');
+export const getImg = (slug) => (slug ? process.env.BASE_URL + slug : Avatar);
 export const type = {
   text: 'text',
   radio: 'radio',
@@ -35,19 +35,23 @@ export const type = {
 
 export const navbarRoutesLink = [
   {
-    route_link: './dashbaord',
+    route_link: '/',
+    route_name: 'HOME'
+  },
+  {
+    route_link: '/dashbaord',
     route_name: 'DASHBAORD'
   },
   {
-    route_link: './form',
+    route_link: '/form',
     route_name: 'FORM'
   },
   {
-    route_link: './user',
+    route_link: '/user',
     route_name: 'USER'
   },
   {
-    route_link: './faq',
+    route_link: '/faq',
     route_name: 'FAQ'
   },
   {

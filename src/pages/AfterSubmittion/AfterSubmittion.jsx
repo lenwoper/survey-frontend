@@ -21,7 +21,7 @@ export default function AfterSubmittion({ percenatge }) {
           </div>
           <div>
           </div>
-          <Button conaitnerClass={'grid'} onClick={() => navigate('/')} className={`m-auto bg-primary-color rounded-full w-[180px]`} text={`BACK TO HOME`} isLoading={false} isDisabled={false} />
+          <Button conaitnerClass={'grid'} onClick={() => navigate('/')} className={`m-auto bg-primary-color rounded-full w-[180px]`} isLoading={false} isDisabled={false} >{'BACK TO HOME'}</Button>
         </div>
       </div>
     </div>

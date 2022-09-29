@@ -6,6 +6,7 @@ import ForgetPassord from "pages/ForgetPassword/ForgetPassord";
 import Signup from "pages/Signup/Signup";
 import SurveyForm from 'pages/SurveyForm/SurveyForm';
 import Subscribe from "pages/Subscribe/Subscribe";
+import Home from "pages/Home/Home";
 export const PublicRoutes = [
     {
         path: "/forget",
@@ -42,7 +43,7 @@ export const PublicRoutes = [
 export const PrivateRoutes = [
     {
         path: "/",
-        component:<SurveyForm/>,
+        component:<Home/>,
     },
     {
         path: '/form',
