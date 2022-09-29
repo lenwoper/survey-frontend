@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm, Controller } from 'react-hook-form';
 import { subscribeValidation } from 'utils/validation';
 import toast from 'react-hot-toast';
-import {useFetch} from 'hooks';
+import { useFetch } from 'hooks';
 const Subscribe = () => {
 
   const methods = useForm({
@@ -47,7 +47,7 @@ const Subscribe = () => {
   return (
     <div>
       <div className="grid h-92VH">
-        <div className="m-auto rounded-md bg-#D9D9D9 pt-3 pb-7 lg:w-[60%] md:w-[60%] w-[95%]">
+        <div className="m-auto rounded-md bg-#D9D9D9 pt-3 pb-7 lg:w-[50%] md:w-[60%] w-[95%]">
           <div className="lg:p-4 md:p-3 p-3">
             <FormProvider {...methods}>
               <form onSubmit={handleSubmit(onSubmit)}>
@@ -73,8 +73,7 @@ const Subscribe = () => {
                     />
                   </div>
                   <div className="col-span-2 px-1  ">
-                    <Button className={`w-full bg-primary-color`} text={`SUBSRIBE`} isLoading={isLoading}
-                    />
+                    <Button className={`w-full bg-primary-color`} isLoading={isLoading}>{'SUBCRIBE'}</Button>
                   </div>
                 </div>
               </form>

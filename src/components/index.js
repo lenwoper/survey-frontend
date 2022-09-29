@@ -8,6 +8,9 @@ import TextArea from "./FormUtils/TextArea";
 import Icon from "./Icon/Icon";
 import FileUpload from "./FormUtils/FileUpload";
 import ProgressBar from "./ProgressBar/ProgressBar";
+import Carousel from 'components/Carousel/Carousel';
+import SelectBrand from "./SelectBrand/SelectBrand";
+import Notification from "./NotificationTemplate/Notification";
 export {
     Header,
     TextInput,
@@ -18,5 +21,8 @@ export {
     TextArea,
     Icon , 
     FileUpload,
-    ProgressBar
+    ProgressBar,
+    Carousel,
+    SelectBrand,
+    Notification
 }

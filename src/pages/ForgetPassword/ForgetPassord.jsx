@@ -7,6 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { forgetPasswordValidation } from 'utils/validation';
 import logo1 from 'Assets/admin-logo-01.png';
 import { useAuth } from 'hooks';
+import toast from 'react-hot-toast';
 
 export default function ForgetPassord() {
   const navigate = useNavigate();
@@ -22,7 +23,9 @@ const {forgetPassword ,hasError} =useAuth()
   }, [forgetPassword]);
 
   React.useEffect(()=>{
-    setError('email',hasError);
+    if(hasError){
+      toast.error(hasError);
+  }
   }, [setError , hasError])
 
   return (
@@ -59,7 +62,7 @@ const {forgetPassword ,hasError} =useAuth()
                   </label>
                 </div>
                 <div className="form-control mt-2">
-                  <Button className={`w-full bg-primary-color`} text={`login`} isLoading={false} isDisabled={!isDirty || !isValid}>Login</Button>
+                  <Button className={`w-full bg-primary-color rounded-full `} text={`login`} isLoading={false} isDisabled={!isDirty || !isValid}>Login</Button>
                 </div>
               </form>
             </FormProvider>

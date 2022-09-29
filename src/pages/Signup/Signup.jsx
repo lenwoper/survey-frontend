@@ -9,8 +9,9 @@ import { resgisterValidation } from 'utils/validation';
 import backgroundSignup from 'Assets/background.png';
 import logo1 from 'Assets/admin-logo-01.png'
 import { useAuth } from 'hooks';
+
 export default function Signup() {
-  const { signup, hasError ,  isLoading} = useAuth();
+  const { signup,   isLoading} = useAuth();
   const navigate = useNavigate();
 
   const methods = useForm({
@@ -23,22 +24,17 @@ export default function Signup() {
       confirm_password: "",
     }
   });
-  const { control, handleSubmit,setError ,
+  
+  const { control, handleSubmit ,
     formState: { isDirty, isValid } } = methods;
   const onSubmit = React.useCallback((data) => {
     signup(data);
   }, [signup])
 
-  React.useEffect(() => {
-    setError('email',hasError);
-  }, [hasError, setError])
-
   return (
     <React.Fragment>
-      <div className='grid lg:grid-cols-2 md:grid-cols-2 h-[100vh] grid-cols-1'>
-        <div className="lg:inline  hidden " style={{ backgroundImage: `url(${backgroundSignup})` }}>
-        </div>
-        <div className="grid">
+      <div className='grid lg:grid-cols-3 md:grid-cols-2 h-[100vh] grid-cols-1'>
+      <div className="grid">
           <div className="m-auto lg:w-[75%] md:w-[80%] w-[90%]">
             <div className="card-body">
               <div className="grid">
@@ -140,11 +136,17 @@ export default function Signup() {
                     </div>
                   </div>
                   <div className="form-control mt-6">
-                    <Button className={`w-full bg-primary-color`} text={`login`} isLoading={isLoading} isDisabled={!isDirty || !isValid}>SIGN UP</Button>
+                    <Button type={"submit"} className={`w-full rounded-full bg-primary-color`} text={`SIGN UP`} isLoading={isLoading} isDisabled={!isDirty || !isValid}>SIGN UP</Button>
                   </div>
                 </form>
               </FormProvider>
             </div>
+          </div>
+        </div>
+        <div className="lg:col-span-2 md:col-span-1 lg:grid md:grid  hidden " style={{ backgroundImage: `url(${backgroundSignup})` }}>
+        <div className="m-auto">
+            <h1 className="text-5xl text-[#fff] lg:text-left md:text-center">Welcome to our <strong>Website</strong></h1>
+            <p className="text-[#fff] lg:text-left md:text-center">SignUp to access your Admin account </p>
           </div>
         </div>
       </div>
