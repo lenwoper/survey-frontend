@@ -6,7 +6,7 @@ import { navbarRoutesLink } from 'utils/commonutils';
 import { useAuth } from 'hooks';
 export default function Navbar() {
   const [isMoboMenu, SetMoboMenu] = React.useState(false);
-  const { session ,logout } = useAuth();
+  const { session , logout } = useAuth();
   document.addEventListener('mouseup', (e) => {
     try {
       const mobile_menu = document.getElementById('mobile_menu');
@@ -25,7 +25,7 @@ export default function Navbar() {
     <React.Fragment>
       {
         session && (
-          <div className='fixed top-0 left-0 right-0 w-full'>
+          <div className='fixed top-0 left-0 right-0 w-full z-[12]'>
             <div className="navbar bg-base-100 drop-shadow-md relative">
               <div className="navbar-start">
                 <div className="dropdown">
@@ -41,7 +41,7 @@ export default function Navbar() {
                 <ul className="menu menu-horizontal p-0">
                   {
                     navbarRoutesLink?.map((routesLink, index) => (
-                      <NavLink to={routesLink?.route_link} key={index} className={(isActive) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>{routesLink?.route_name}</span></li></NavLink>
+                      <NavLink to={routesLink?.route_link} key={index} className={({isActive}) => isActive ? ' border-b-2 border-transparent hover:border-primary-color rounded-md' : ''} > <li className=""><span>{routesLink?.route_name}</span></li></NavLink>
                     ))
                   }
                 </ul>
@@ -49,8 +49,8 @@ export default function Navbar() {
               <div className="navbar-end">
                 <div className="flex-none gap-2">
                   {
-                    true ? (
-                      <div className="dropdown dropdown-end">
+                    session ? (
+                      <div className="dropdown  dropdown-end">
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                           <div className="w-10 rounded-full">
                             <img src="https://placeimg.com/80/80/people" alt="loading..." />
@@ -82,11 +82,11 @@ export default function Navbar() {
             </div>
             <div>
               {/* in mobile view  */}
-              <div className={` top-[68px] transition-all h-[90vh] absolute z-[1] ${isMoboMenu ? 'w-full' : 'w-0'} overflow-hidden bg-[#0303037f] lg:hidden mb:hidden block `}>
-                <div className="bg-white w-[72%] h-full " id="mobile_menu">
+              <div className={` top-[65.5px] transition-all h-[90vh] absolute z-[1] ${isMoboMenu ? 'w-full' : 'w-0'} overflow-hidden bg-[#0303037f] lg:hidden mb:hidden block `}>
+                <div className="bg-[#fff] w-[72%] h-[100vh] " id="mobile_menu">
                   {
                     navbarRoutesLink?.map((ruteLink, index) => (
-                      <NavLink to={ruteLink?.route_link} className={(isActive) => isActive ? '  hover:bg-primary-color ' : ''} > <li className=" py-1 border-b rounded-md list-none px-1 btn-ghost "><span>{ruteLink?.route_name}</span></li></NavLink>
+                      <NavLink to={ruteLink?.route_link} className={({isActive}) => isActive ? '  hover:bg-primary-color ' : ''} > <li className=" py-1 pl-2  border-b rounded-sm list-none px-1 btn-ghost "><span>{ruteLink?.route_name}</span></li></NavLink>
                     ))
                   }
                 </div>

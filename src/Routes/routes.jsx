@@ -1,12 +1,13 @@
 import React from "react";
-import { Header } from "components";
+import { Header, Loader } from "components";
 import Login from "pages/Login/Login";
 import VerifyOtp from "pages/VerifyOtp/VerifyOtp";
 import ForgetPassord from "pages/ForgetPassword/ForgetPassord";
 import Signup from "pages/Signup/Signup";
 import SurveyForm from 'pages/SurveyForm/SurveyForm';
 import Subscribe from "pages/Subscribe/Subscribe";
-import Home from "pages/Home/Home";
+const Home = React.lazy(() => import("pages/Home/Home"));
+
 export const PublicRoutes = [
     {
         path: "/forget",
@@ -43,7 +44,11 @@ export const PublicRoutes = [
 export const PrivateRoutes = [
     {
         path: "/",
-        component:<Home/>,
+        component: (
+            <React.Suspense fallback={<Loader />}>
+                <Home />
+            </React.Suspense>
+        ),
     },
     {
         path: '/form',

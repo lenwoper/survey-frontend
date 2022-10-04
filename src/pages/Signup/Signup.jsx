@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button, TextInput, CheckBox, Icon } from 'components'
 import { AiOutlineMail } from 'react-icons/ai';
+import { HiOutlineUser } from "react-icons/hi";
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { FormProvider, useForm, Controller } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
@@ -8,13 +9,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { resgisterValidation } from 'utils/validation';
 import backgroundSignup from 'Assets/background.png';
 import logo1 from 'Assets/admin-logo-01.png'
-import { useAuth } from 'hooks';
+import { useRegister } from 'hooks';
 
 export default function Signup() {
-  const { signup,   isLoading} = useAuth();
+  let  { methods , signup , isLoading } = useRegister();
   const navigate = useNavigate();
-
-  const methods = useForm({
+   methods = useForm({
     resolver: yupResolver(resgisterValidation),
     mode: "all",
     defaultValues: {
@@ -56,7 +56,7 @@ export default function Signup() {
                           field,
                           fieldState: { invalid, isTouched, isDirty, error },
                         }) => (
-                          <TextInput type={"text"} inputRef={field.ref} error={error} {...field} name={"Name"} icon={<AiOutlineMail />} placeholder={"Name "} className={"w-full pl-6"} />
+                          <TextInput type={"text"} inputRef={field.ref} error={error} {...field} name={"Name"} icon={<HiOutlineUser />} placeholder={"Name "} className={"w-full pl-6"} />
                         )}
                       />
                     </span>

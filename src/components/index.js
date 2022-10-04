@@ -11,6 +11,7 @@ import ProgressBar from "./ProgressBar/ProgressBar";
 import Carousel from 'components/Carousel/Carousel';
 import SelectBrand from "./SelectBrand/SelectBrand";
 import Notification from "./NotificationTemplate/Notification";
+import Loader from "./Loader.jsx/Loader";
 export {
     Header,
     TextInput,
@@ -24,5 +25,6 @@ export {
     ProgressBar,
     Carousel,
     SelectBrand,
-    Notification
+    Notification,
+    Loader
 }
