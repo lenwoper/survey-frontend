@@ -4,13 +4,30 @@ import { type } from 'utils/commonutils';
 import { FormProvider, useForm, Controller } from "react-hook-form";
 import AfterSubmittion from '../AfterSubmittion/AfterSubmittion';
 import toast from 'react-hot-toast';
+import { useFetch } from 'hooks';
+
 const SurveyForm = () => {
   const [formUnit, SetFormUnit] = React.useState(1);
   const [progressTracking, SetProgressTracking] = React.useState(0);
-
   const methods = useForm({
     mode: "all"
   });
+  const onSuccess = React.useCallback((response) => {
+    console.log(response, "survery success  msg ")
+  }, []);
+
+  const onFailure = React.useCallback((errors) => {
+    console.log(errors, "survery error ")
+  }, []);
+
+  const { isLoading, data } = useFetch({
+    initialUrl: "/surveys",
+    skipOnStart: false,
+    onFailure,
+    onSuccess,
+  });
+
+  console.log(data, " survery =====>  ");
   const { control, handleSubmit,
     // formState: { isDirty, isValid } 
   } = methods;
@@ -136,157 +153,157 @@ const SurveyForm = () => {
   return (
     <div>
       {
-        formData.length > 0 ? (
-          <FormProvider {...methods}>
-            {
-              formData.length < formUnit ? (
-                <AfterSubmittion percenatge={((progressTracking / formData.length) * 100) ?? 0} />
-              ) : (
-                <div className="grid h-[90vh]">
-                  <form className="m-auto lg:w-[60%] md:w-[70%] w-[98%] " onSubmit={handleSubmit(onSubmit)}>
-                    <components.ProgressBar width={((progressTracking / formData.length) * 100) ?? 0} />
-                   <div className="px-1">
-                    <h1 className="lg:text-2xl text-base uppercase font-semibold  ">American Eagle </h1>
-                   </div>
-                    <div className=" bg-[#ebe9e6]  rounded-md p-4">
-                      {
-                        formData.slice(formUnit - 1, formUnit)?.map((dom, index) => {
-                          if (dom.type === type.text) {
-                            return (
-                              <div key={index}>
-                                {dom?.data?.label && (<label htmlFor="textInput">{dom?.data?.label}</label>)}
-                                <Controller
-                                  control={control}
-                                  name={dom?.data?.name}
-                                  render={({
-                                    field,
-                                    fieldState: { invalid, isTouched, isDirty, error },
-                                  }) => (
-                                    <components.TextInput {...field} type={'text'} inputRef={field.ref} />
-                                  )} />
-                              </div>
+        isLoading ? (
+          <components.Loader />
+        ) :
+          formData.length > 0 && (
+            <FormProvider {...methods}>
+              {
+                formData.length < formUnit ? (
+                  <AfterSubmittion percenatge={((progressTracking / formData.length) * 100) ?? 0} />
+                ) : (
+                  <div className="grid h-[90vh]">
+                    <form className="m-auto lg:w-[60%] md:w-[70%] w-[98%] " onSubmit={handleSubmit(onSubmit)}>
+                      <components.ProgressBar width={((progressTracking / formData.length) * 100) ?? 0} />
+                      <div className="px-1">
+                        <h1 className="lg:text-2xl text-base uppercase font-semibold  ">American Eagle </h1>
+                      </div>
+                      <div className=" bg-[#ebe9e6]  rounded-md p-4">
+                        {
+                          formData.slice(formUnit - 1, formUnit)?.map((dom, index) => {
+                            if (dom.type === type.text) {
+                              return (
+                                <div key={index}>
+                                  {dom?.data?.label && (<label htmlFor="textInput">{dom?.data?.label}</label>)}
+                                  <Controller
+                                    control={control}
+                                    name={dom?.data?.name}
+                                    render={({
+                                      field,
+                                      fieldState: { invalid, isTouched, isDirty, error },
+                                    }) => (
+                                      <components.TextInput {...field} type={'text'} inputRef={field.ref} />
+                                    )} />
+                                </div>
 
-                            )
-                          }
-                          if (dom.type === type.radio) {
-                            return (
-                              <div key={index}>
-                                <label htmlFor="htmlForm">{dom?.des}</label>
-                                {
-                                  dom?.data?.map((domSec) => (
-                                    <div >
-                                      <Controller
-                                        control={control}
-                                        name={domSec?.name}
-                                        render={({
-                                          field,
-                                          fieldState: { invalid, isTouched, isDirty, error },
-                                        }) => (
-                                          <components.Radio inputRef={field.ref} {...field} value={domSec?.value} label={domSec?.label} />
-                                        )} />
-                                    </div>
-                                  ))
-                                }
-                              </div>
-                            )
-                          }
-                          if (dom.type === type.checkbox) {
-                            return (
-                              <div key={index}>
-                                <label>{dom?.des}</label>
-                                {
-                                  dom?.data?.map((domSec) => (
-                                    <div >
-                                      <Controller
-                                        control={control}
-                                        name={domSec?.name}
-                                        render={({
-                                          field,
-                                          fieldState: { invalid, isTouched, isDirty, error },
-                                        }) => (
-                                          <components.CheckBox inputRef={field.ref} {...field} value={domSec?.value} label={domSec?.label} />
-                                        )} />
-                                    </div>
-                                  ))
-                                }
-                              </div>
+                              )
+                            }
+                            if (dom.type === type.radio) {
+                              return (
+                                <div key={index}>
+                                  <label htmlFor="htmlForm">{dom?.des}</label>
+                                  {
+                                    dom?.data?.map((domSec) => (
+                                      <div >
+                                        <Controller
+                                          control={control}
+                                          name={domSec?.name}
+                                          render={({
+                                            field,
+                                            fieldState: { invalid, isTouched, isDirty, error },
+                                          }) => (
+                                            <components.Radio inputRef={field.ref} {...field} value={domSec?.value} label={domSec?.label} />
+                                          )} />
+                                      </div>
+                                    ))
+                                  }
+                                </div>
+                              )
+                            }
+                            if (dom.type === type.checkbox) {
+                              return (
+                                <div key={index}>
+                                  <label>{dom?.des}</label>
+                                  {
+                                    dom?.data?.map((domSec) => (
+                                      <div >
+                                        <Controller
+                                          control={control}
+                                          name={domSec?.name}
+                                          render={({
+                                            field,
+                                            fieldState: { invalid, isTouched, isDirty, error },
+                                          }) => (
+                                            <components.CheckBox inputRef={field.ref} {...field} value={domSec?.value} label={domSec?.label} />
+                                          )} />
+                                      </div>
+                                    ))
+                                  }
+                                </div>
 
-                            )
-                          }
-                          if (dom.type === type.textarea) {
-                            return (
-                              <div key={index}>
-                                <Controller
-                                  control={control}
-                                  name={dom?.data?.name}
-                                  render={({
-                                    field,
-                                    fieldState: { invalid, isTouched, isDirty, error },
-                                  }) => (
-                                    <components.TextArea className={`w-full`} label={dom?.data?.label} {...field} />
-                                  )} />
-                              </div>
-                            )
-                          }
-                          if (dom.type === type.file) {
-                            return (
-                              <div key={index}>
-                                {dom?.data?.label}
-                                <Controller
-                                  control={control}
-                                  name={dom?.data?.name}
-                                  render={({
-                                    field,
-                                    fieldState: { invalid, isTouched, isDirty, error },
-                                  }) => (
-                                    <components.FileUpload {...field} />
-                                  )} />
-                              </div>
-                            )
-                          }
-                          if (dom.type === type.select) {
-                            return (
-                              <div key={index}>
-                                {dom?.data?.label}
-                                <Controller
-                                  control={control}
-                                  name={dom?.data?.name}
-                                  render={({
-                                    field,
-                                    fieldState: { invalid, isTouched, isDirty, error },
-                                  }) => (
-                                    <components.Select className={``} selectionOption={dom?.data?.selectBoxOption} isRequired={true} {...field} />
-                                  )} />
-                              </div>
-                            )
-                          } else {
-                            return (<h1>something gone wrong </h1>)
-                          }
-                        })
-                      }
-                    </div>
-                    <div className="flex justify-end mt-3">
-                      <span className="mx-2">
-                        <components.Button type="button" onClick={() => formUnitFunction(formUnit)} className={`m-auto lg:btn-sm md:btn-sm  btn-sm bg-primary-color rounded-lg w-[120px]`} isLoading={false} isDisabled={false}>{'SKIP'}</components.Button>{ }
-                      </span>
-                      <span className="mx-2">
-                        <components.Button type="submit" className={`m-auto lg:btn-sm md:btn-sm btn-sm bg-primary-color rounded-lg w-[120px]`} text={`NEXT`} isLoading={false} isDisabled={false} >{'NEXT'}</components.Button >
-                      </span>
-                    </div>
-                    <div>
-                    </div>
-                  </form>
-                </div>
-              )
-            }
+                              )
+                            }
+                            if (dom.type === type.textarea) {
+                              return (
+                                <div key={index}>
+                                  <Controller
+                                    control={control}
+                                    name={dom?.data?.name}
+                                    render={({
+                                      field,
+                                      fieldState: { invalid, isTouched, isDirty, error },
+                                    }) => (
+                                      <components.TextArea className={`w-full`} label={dom?.data?.label} {...field} />
+                                    )} />
+                                </div>
+                              )
+                            }
+                            if (dom.type === type.file) {
+                              return (
+                                <div key={index}>
+                                  {dom?.data?.label}
+                                  <Controller
+                                    control={control}
+                                    name={dom?.data?.name}
+                                    render={({
+                                      field,
+                                      fieldState: { invalid, isTouched, isDirty, error },
+                                    }) => (
+                                      <components.FileUpload {...field} />
+                                    )} />
+                                </div>
+                              )
+                            }
+                            if (dom.type === type.select) {
+                              return (
+                                <div key={index}>
+                                  {dom?.data?.label}
+                                  <Controller
+                                    control={control}
+                                    name={dom?.data?.name}
+                                    render={({
+                                      field,
+                                      fieldState: { invalid, isTouched, isDirty, error },
+                                    }) => (
+                                      <components.Select className={``} selectionOption={dom?.data?.selectBoxOption} isRequired={true} {...field} />
+                                    )} />
+                                </div>
+                              )
+                            } else {
+                              return (<h1>something gone wrong </h1>)
+                            }
+                          })
+                        }
+                      </div>
+                      <div className="flex justify-end mt-3">
+                        <span className="mx-2">
+                          <components.Button type="button" onClick={() => formUnitFunction(formUnit)} className={`m-auto lg:btn-sm md:btn-sm  btn-sm bg-primary-color rounded-lg w-[120px]`} isLoading={false} isDisabled={false}>{'SKIP'}</components.Button>{ }
+                        </span>
+                        <span className="mx-2">
+                          <components.Button type="submit" className={`m-auto lg:btn-sm md:btn-sm btn-sm bg-primary-color rounded-lg w-[120px]`} text={`NEXT`} isLoading={false} isDisabled={false} >{'NEXT'}</components.Button >
+                        </span>
+                      </div>
+                      <div>
+                      </div>
+                    </form>
+                  </div>
+                )
+              }
 
 
-          </FormProvider>
-        ) : (
-          <h1>Sorry something  gone wrong here </h1>
-        )
+            </FormProvider>
+          )
       }
-
     </div>
   );
 }

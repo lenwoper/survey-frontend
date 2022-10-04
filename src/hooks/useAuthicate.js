@@ -1,14 +1,13 @@
 import React from "react";
 import { useLocalStorage } from './useLocalStorage';
 import { useFetch } from 'hooks';
-import { AUTH_TOKEN , USER_DETAILS} from "constants/localstorageconst";
+import { AUTH_TOKEN, USER_DETAILS } from "constants/localstorageconst";
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
 /*
  * session 
  * isloading login
- * signup 
  * verify otp 
  * reset password 
  * logout 
@@ -41,17 +40,6 @@ export const useAuth = () => {
     onFailure,
     onSuccess,
   });
-  const signup = React.useCallback((data) => {
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("email", data.name);
-    formData.append("password", data.password);
-    callFetch({
-      url: "/sigup/",
-      method: "post",
-      data: [formData],
-    });
-  }, [callFetch])
 
   const login = React.useCallback((data) => {
     const formData = new FormData();
@@ -69,28 +57,44 @@ export const useAuth = () => {
     callFetch({
       url: "/login/",
       method: "post",
-      data: [data],
+      data: data,
+      onSuccess: (res) => {
+        toast.success(res.msg);
+        navigate('/login');
+      },
+      onFailure: (err) => {
+        toast.error(err.msg)
+      }
     });
-  }, [callFetch])
+  }, [callFetch , navigate])
 
   const forgetPassword = React.useCallback((data) => {
     callFetch({
       url: "/forget-password/",
       method: "post",
       data: data,
+      onSuccess: (res) => {
+        toast.success(res.msg);
+      },
+      onFailure: (err) => {
+        toast.error(err.msg)
+      }
     });
   }, [callFetch])
   const logout = React.useCallback(() => {
     if (window !== undefined) {
+      callFetch({
+        url: "/logout",
+        method: "post",
+      });
       localStorage.clear();
       window.location.reload();
     }
-  }, [])
+  }, [callFetch])
   return {
     session,
     userDetails,
     verifyToken,
-    signup,
     logout,
     login,
     forgetPassword,

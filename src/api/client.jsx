@@ -79,7 +79,7 @@ request.interceptors.request.use(
         null
       )
     ) {
-      req.headers.Authorization = `TOKEN ${getLocalStorage(
+      req.headers.Authorization = `Bearer ${getLocalStorage(
         AUTH_TOKEN,
         null
       )}`;
