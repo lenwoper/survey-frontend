@@ -20,6 +20,10 @@ const SurveyForm = () => {
     console.log(errors, "survery error ")
   }, []);
 
+
+
+
+  
   const { isLoading, data } = useFetch({
     initialUrl: "/surveys",
     skipOnStart: false,
@@ -299,7 +303,6 @@ const SurveyForm = () => {
                   </div>
                 )
               }
-
 
             </FormProvider>
           )
