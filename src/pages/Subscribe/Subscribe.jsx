@@ -48,10 +48,10 @@ const Subscribe = () => {
     <div>
       <div className="grid h-92VH">
         <div className="m-auto rounded-md bg-#D9D9D9 pt-3 pb-7 lg:w-[50%] md:w-[60%] w-[95%]">
-          <div className="lg:p-4 md:p-3 p-3">
+          <div className="lg:p-6 md:p-3 p-3">
             <FormProvider {...methods}>
               <form onSubmit={handleSubmit(onSubmit)}>
-                <h3 className='text-center lg:text-4xl md:text-4xl text-xl  font-bold pb-2 text-primary-color'>SUBSCRIBE TO OUR NEWSLETTER</h3>
+                <h3 className='text-center lg:text-2xl md:text-2xl text-xl  font-lato pb-1 text-primary-color'>SUBSCRIBE TO OUR NEWSLETTER</h3>
                 <div className="grid grid-cols-8">
                   <div className="col-span-6">
                     <Controller
@@ -71,8 +71,10 @@ const Subscribe = () => {
                         />
                       )}
                     />
+
+
                   </div>
-                  <div className="col-span-2 px-1  ">
+                  <div className="col-span-2 px-1 ">
                     <Button className={`w-full bg-primary-color`} isLoading={isLoading}>{'SUBCRIBE'}</Button>
                   </div>
                 </div>

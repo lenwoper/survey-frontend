@@ -13,7 +13,7 @@ export default function Login() {
   const navigate = useNavigate();
   const { login, isLoading } = useAuth();
   const methods = useForm({
-    resolver: yupResolver(loginValidation),
+    // resolver: yupResolver(loginValidation),
     mode: "all",
     defaultValues: {
       email: "",
@@ -21,7 +21,7 @@ export default function Login() {
     }
   });
 const { control, handleSubmit,
-  formState: { isDirty, isValid }
+  // formState: { isDirty, isValid }
 } = methods;
 
 const onSubmit = React.useCallback((data) => {
@@ -101,7 +101,7 @@ return (
                 </div>
                 <div className="form-control mt-6">
                   <Button className={`w-full bg-primary-color rounded-full `} type={'submit'} isLoading={isLoading}
-                    isDisabled={!isDirty || !isValid}
+                    // isDisabled={!isDirty || !isValid}
                   >{'LOGIN'}</Button>
                 </div>
               </form>
