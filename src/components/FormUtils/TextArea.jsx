@@ -1,13 +1,14 @@
 import React from 'react'
 
-export default function TextArea({
+const TextArea=({
   placeholder,
   className,
   label , 
+
  isRequired=false,
   labelClassName,
   ...props
-}) {
+}) =>{
   return (
     <div>
       <div>
@@ -18,3 +19,5 @@ export default function TextArea({
     </div>
   )
 }
+
+export default React.forwardRef(TextArea);

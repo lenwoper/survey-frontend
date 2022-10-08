@@ -27,7 +27,6 @@ const SurveyForm = () => {
     onSuccess,
   });
 
-  console.log(data, " survery =====>  ");
   const { control, handleSubmit,
     // formState: { isDirty, isValid } 
   } = methods;
@@ -36,6 +35,7 @@ const SurveyForm = () => {
     SetFormUnit(e + 1)
   }
   const onSubmit = (data) => {
+
     const formValue = new FormData();
     for (const [key, value] of Object.entries(data)) {
       if (value) {
@@ -182,7 +182,7 @@ const SurveyForm = () => {
                                       field,
                                       fieldState: { invalid, isTouched, isDirty, error },
                                     }) => (
-                                      <components.TextInput {...field} type={'text'} inputRef={field.ref} />
+                                      <components.TextInput {...field} type={'text'}  />
                                     )} />
                                 </div>
 
@@ -193,8 +193,8 @@ const SurveyForm = () => {
                                 <div key={index}>
                                   <label htmlFor="htmlForm">{dom?.des}</label>
                                   {
-                                    dom?.data?.map((domSec) => (
-                                      <div >
+                                    dom?.data?.map((domSec , index) => (
+                                      <div key={index}>
                                         <Controller
                                           control={control}
                                           name={domSec?.name}
@@ -202,7 +202,7 @@ const SurveyForm = () => {
                                             field,
                                             fieldState: { invalid, isTouched, isDirty, error },
                                           }) => (
-                                            <components.Radio inputRef={field.ref} {...field} value={domSec?.value} label={domSec?.label} />
+                                            <components.Radio {...field} value={domSec?.value} label={domSec?.label} />
                                           )} />
                                       </div>
                                     ))
@@ -215,8 +215,8 @@ const SurveyForm = () => {
                                 <div key={index}>
                                   <label>{dom?.des}</label>
                                   {
-                                    dom?.data?.map((domSec) => (
-                                      <div >
+                                    dom?.data?.map((domSec , index) => (
+                                      <div key={index}>
                                         <Controller
                                           control={control}
                                           name={domSec?.name}
@@ -224,7 +224,7 @@ const SurveyForm = () => {
                                             field,
                                             fieldState: { invalid, isTouched, isDirty, error },
                                           }) => (
-                                            <components.CheckBox inputRef={field.ref} {...field} value={domSec?.value} label={domSec?.label} />
+                                            <components.CheckBox {...field} value={domSec?.value} label={domSec?.label} />
                                           )} />
                                       </div>
                                     ))

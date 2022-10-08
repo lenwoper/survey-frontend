@@ -1,12 +1,12 @@
-import React from 'react';
-export default function Radio({
+import React ,{forwardRef} from "react";
+const  Radio=({
   className,
   name,
   label,
   labelClassName,
   containerName,
   ...props
-}) {
+})=> {
   return (
     <React.Fragment>
       <div className={`${containerName} flex justify-self-auto`}>
@@ -16,3 +16,4 @@ export default function Radio({
     </React.Fragment>
   )
 }
+export default forwardRef(Radio);

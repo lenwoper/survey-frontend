@@ -1,14 +1,15 @@
-import React from "react";
-export default function CheckBox(
+import React , {forwardRef}from "react";
+const CheckBox=(
   {
     className,
     name,
     label,
+    
     labelClassName,
     containerName,
     ...props
   }
-) {
+)=> {
   return (
     <React.Fragment>
       <div className={`${containerName} flex justify-self-auto`}>
@@ -18,3 +19,4 @@ export default function CheckBox(
     </React.Fragment>
   )
 }
+export default forwardRef(CheckBox);

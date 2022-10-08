@@ -1,14 +1,13 @@
-import React from "react";
+import React  from "react";
 
-export default function Textfield({ error,
+const  Textfield=({ error,
     placeholder,
     name,
     isRequired,
     type,
     icon,
-    ...props }) {
+    ...props }) =>{
     return (
-        <React.Fragment>
             <div className="w-full ">
                 <div className="relative">
                     {icon && <span className="absolute top-4 left-3 bg-white">{icon}</span>}
@@ -24,6 +23,7 @@ export default function Textfield({ error,
                 </div>
                 <p className=" px-2 mb-0 pt-1 text-xs text-primary-color">{error?.message}</p>
             </div>
-        </React.Fragment>
     );
 }
+
+export default React.forwardRef(Textfield);
