@@ -187,9 +187,9 @@ const SurveyForm = () => {
                                       <components.TextInput {...field} type={'text'} inputRef={field.ref} />
                                     )} />
                                 </div>
-
                               )
                             }
+                            
                             if (dom.type === type.radio) {
                               return (
                                 <div key={index}>
