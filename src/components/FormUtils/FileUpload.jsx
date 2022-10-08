@@ -1,14 +1,15 @@
-import React from "react";
+import React ,{forwardRef} from "react";
 import { BsCloudUpload } from 'react-icons/bs';
-export default function FileUpload(
+const  FileUpload=(
   {
     error,
     placeholder,
     name,
+    
     isRequired=false,
     icon = <BsCloudUpload />,
     ...props }
-) {
+) =>{
   return (
     <React.Fragment>
       <div className="w-full ">
@@ -30,3 +31,5 @@ export default function FileUpload(
     </React.Fragment>
   );
 }
+
+export default forwardRef(FileUpload);

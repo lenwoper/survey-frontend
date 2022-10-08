@@ -1,10 +1,10 @@
-import React from 'react'
+import React ,{forwardRef}from 'react'
 
-export default function Select({
+ const  Select=({
   selectionOption  ,
-   classsNam ,
+   classsNam , 
    isRequired=false,
-    ...props}) {
+    ...props}) =>{
   return (
   
     <div>
@@ -22,3 +22,4 @@ export default function Select({
     </div>
   )
 }
+export default forwardRef(Select);

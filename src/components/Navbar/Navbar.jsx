@@ -18,7 +18,7 @@ export default function Navbar() {
         }
       }
     } catch (err) {
-      console.log(err);
+ 
     }
   })
   return (
@@ -86,7 +86,7 @@ export default function Navbar() {
                 <div className="bg-[#fff] w-[72%] h-[100vh] " id="mobile_menu">
                   {
                     navbarRoutesLink?.map((ruteLink, index) => (
-                      <NavLink to={ruteLink?.route_link} className={({isActive}) => isActive ? '  hover:bg-primary-color ' : ''} > <li className=" py-1 pl-2  border-b rounded-sm list-none px-1 btn-ghost "><span>{ruteLink?.route_name}</span></li></NavLink>
+                      <NavLink key={index} to={ruteLink?.route_link} className={({isActive}) => isActive ? '  hover:bg-primary-color ' : ''} > <li className=" py-1 pl-2  border-b rounded-sm list-none px-1 btn-ghost "><span>{ruteLink?.route_name}</span></li></NavLink>
                     ))
                   }
                 </div>
