@@ -189,7 +189,7 @@ const SurveyForm = () => {
                                 </div>
                               )
                             }
-                            
+
                             if (dom.type === type.radio) {
                               return (
                                 <div key={index}>
@@ -212,10 +212,11 @@ const SurveyForm = () => {
                                 </div>
                               )
                             }
+
                             if (dom.type === type.checkbox) {
                               return (
                                 <div key={index}>
-                                  <label>{dom?.des}</label>
+                                  <label>{dom?.des}</label> 
                                   {
                                     dom?.data?.map((domSec) => (
                                       <div >
