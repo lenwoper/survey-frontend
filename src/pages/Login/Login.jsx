@@ -64,6 +64,12 @@ return (
                     <span className="label-text">Password</span>
                   </label>
                   <span>
+
+
+
+
+
+                    
                     <Controller
                       control={control}
                       name="password"
