@@ -17,11 +17,11 @@ export default function AfterSubmittion({ percenatge }) {
             </div>
           </div>
           <div className="">
-            <img src={envelope} alt="loading..." className="lg:w-[220px] md:w-[220px] w-[180px] h-auto" />
+            <img src={envelope} alt="loading..." className="lg:w-[120px] md:w-[120px] w-[120px] h-auto" />
           </div>
           <div>
           </div>
-          <Button conaitnerClass={'grid'} onClick={() => navigate('/')} className={`m-auto bg-primary-color rounded-full w-[180px]`} isLoading={false} isDisabled={false} >{'BACK TO HOME'}</Button>
+          <Button conaitnerClass={'grid'} onClick={() => navigate('/')} className={`m-auto bg-primary-color rounded-full w-[120px]`} isLoading={false} isDisabled={false} >{'BACK TO HOME'}</Button>
         </div>
       </div>
     </div>

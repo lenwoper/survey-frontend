@@ -6,11 +6,6 @@ import AfterSubmittion from '../AfterSubmittion/AfterSubmittion';
 import toast from 'react-hot-toast';
 import { useFetch } from 'hooks';
 
-
-
-
-
-
 const SurveyForm = () => {
   const [formUnit, SetFormUnit] = React.useState(1);
   const [progressTracking, SetProgressTracking] = React.useState(0);
@@ -77,7 +72,7 @@ const SurveyForm = () => {
         is_multiple: false,
         is_required: false,
         name: "myfile",
-        label: "Youy name must be fill up here "
+        label: "You name must be fill up here "
       }
     },
     {
@@ -171,7 +166,7 @@ const SurveyForm = () => {
                     <form className="m-auto lg:w-[60%] md:w-[70%] w-[98%] " onSubmit={handleSubmit(onSubmit)}>
                       <components.ProgressBar width={((progressTracking / formData.length) * 100) ?? 0} />
                       <div className="px-1">
-                        <h1 className="lg:text-2xl text-base uppercase font-semibold  ">American Eagle </h1>
+                        <h1 className="lg:text-4xl text-base uppercase font-xl  ">American Eagle </h1>
                       </div>
                       <div className=" bg-[#ebe9e6]  rounded-md p-4">
                         {
