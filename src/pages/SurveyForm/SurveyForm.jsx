@@ -166,7 +166,7 @@ const SurveyForm = () => {
                     <form className="m-auto lg:w-[60%] md:w-[70%] w-[98%] " onSubmit={handleSubmit(onSubmit)}>
                       <components.ProgressBar width={((progressTracking / formData.length) * 100) ?? 0} />
                       <div className="px-1">
-                        <h1 className="lg:text-4xl text-base uppercase font-xl  ">American Eagle </h1>
+                        <h1 className="lg:text-base text-base uppercase font-bold  ">American Eagle </h1>
                       </div>
                       <div className=" bg-[#ebe9e6]  rounded-md p-4">
                         {
@@ -309,3 +309,4 @@ const SurveyForm = () => {
 }
 
 export default SurveyForm;
+

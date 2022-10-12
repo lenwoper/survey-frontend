@@ -7,7 +7,7 @@ export default function AfterSubmittion({ percenatge }) {
   const navigate = useNavigate();
   return (
     <div>
-      <div className="grid h-[90vh]">
+      <div className="grid h-[90vh]"> 
         <div className="m-auto">
           <div className="grid">
             <div className='m-auto'>
