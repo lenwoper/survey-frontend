@@ -5,6 +5,7 @@ export default function Home() {
   return (
     <React.Fragment>
       <div className="mt-16">
+        
         <Carousel data={data} />
       </div>
       <div className="lg:px-24 md:px2 px-1 overflow-auto">

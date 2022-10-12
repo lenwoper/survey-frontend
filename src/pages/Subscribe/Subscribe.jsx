@@ -31,9 +31,6 @@ const Subscribe = () => {
     onFailure
   })
 
-
-
-
   const { control, handleSubmit } = methods;
   const onSubmit = React.useCallback((data) => {
     const formData = new FormData();
@@ -51,7 +48,7 @@ const Subscribe = () => {
           <div className="lg:p-4 md:p-3 p-3">
             <FormProvider {...methods}>
               <form onSubmit={handleSubmit(onSubmit)}>
-                <h3 className='text-center lg:text-4xl md:text-4xl text-xl  font-bold pb-2 text-primary-color'>SUBSCRIBE TO OUR NEWSLETTER</h3>
+                <h4 className='text-center lg:text-2xl md:text-2xl text-2xl font-bold pb-2 text-primary-color'>SUBSCRIBE TO OUR NEWSLETTER</h4>
                 <div className="grid grid-cols-8">
                   <div className="col-span-6">
                     <Controller
