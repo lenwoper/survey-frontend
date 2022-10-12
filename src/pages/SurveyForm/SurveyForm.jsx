@@ -20,6 +20,7 @@ const SurveyForm = () => {
     console.log(errors, "survery error ")
   }, []);
 
+  
   const { isLoading, data } = useFetch({
     initialUrl: "/surveys",
     skipOnStart: false,
@@ -102,6 +103,7 @@ const SurveyForm = () => {
           value: "abhi",
           label: "it is radion lable test "
         }
+        
       ],
     },
 
@@ -162,11 +164,11 @@ const SurveyForm = () => {
                 formData.length < formUnit ? (
                   <AfterSubmittion percenatge={((progressTracking / formData.length) * 100) ?? 0} />
                 ) : (
-                  <div className="grid h-[90vh]">
+                  <div className="grid h-[95vh]">
                     <form className="m-auto lg:w-[60%] md:w-[70%] w-[98%] " onSubmit={handleSubmit(onSubmit)}>
                       <components.ProgressBar width={((progressTracking / formData.length) * 100) ?? 0} />
                       <div className="px-1">
-                        <h1 className="lg:text-2xl text-base uppercase font-semibold  ">American Eagle </h1>
+                        <h1 className="lg:text-2xl text-base uppercase font-lato  ">American Eagle </h1>
                       </div>
                       <div className=" bg-[#ebe9e6]  rounded-md p-4">
                         {
@@ -185,9 +187,9 @@ const SurveyForm = () => {
                                       <components.TextInput {...field} type={'text'} inputRef={field.ref} />
                                     )} />
                                 </div>
-
                               )
                             }
+
                             if (dom.type === type.radio) {
                               return (
                                 <div key={index}>
@@ -210,10 +212,11 @@ const SurveyForm = () => {
                                 </div>
                               )
                             }
+
                             if (dom.type === type.checkbox) {
                               return (
                                 <div key={index}>
-                                  <label>{dom?.des}</label>
+                                  <label>{dom?.des}</label> 
                                   {
                                     dom?.data?.map((domSec) => (
                                       <div >
@@ -285,12 +288,12 @@ const SurveyForm = () => {
                           })
                         }
                       </div>
-                      <div className="flex justify-end mt-3">
+                      <div className="flex justify-end mt-6">
                         <span className="mx-2">
-                          <components.Button type="button" onClick={() => formUnitFunction(formUnit)} className={`m-auto lg:btn-sm md:btn-sm  btn-sm bg-primary-color rounded-lg w-[120px]`} isLoading={false} isDisabled={false}>{'SKIP'}</components.Button>{ }
+                          <components.Button type="button" onClick={() => formUnitFunction(formUnit)} className={`m-auto lg:btn-sm md:btn-sm  btn-sm bg-primary-color rounded-lg w-[110px]`} isLoading={false} isDisabled={false}>{'SKIP'}</components.Button>{ }
                         </span>
                         <span className="mx-2">
-                          <components.Button type="submit" className={`m-auto lg:btn-sm md:btn-sm btn-sm bg-primary-color rounded-lg w-[120px]`} text={`NEXT`} isLoading={false} isDisabled={false} >{'NEXT'}</components.Button >
+                          <components.Button type="submit" className={`m-auto lg:btn-sm md:btn-sm btn-sm bg-primary-color rounded-lg w-[110px]`} text={`NEXT`} isLoading={false} isDisabled={false} >{'NEXT'}</components.Button >
                         </span>
                       </div>
                       <div>
@@ -299,7 +302,6 @@ const SurveyForm = () => {
                   </div>
                 )
               }
-
 
             </FormProvider>
           )
