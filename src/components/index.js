@@ -12,6 +12,7 @@ import Carousel from 'components/Carousel/Carousel';
 import SelectBrand from "./SelectBrand/SelectBrand";
 import Notification from "./NotificationTemplate/Notification";
 import Loader from "./Loader.jsx/Loader";
+import { RingProgressSimple as RedialProgresBar } from "./ProgressBar/ProgressBar";
 export {
     Header,
     TextInput,
@@ -26,5 +27,6 @@ export {
     Carousel,
     SelectBrand,
     Notification,
-    Loader
+    Loader,
+    RedialProgresBar
 }

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button } from 'components';
+import { Button, RedialProgresBar } from 'components';
 import { useNavigate } from 'react-router-dom';
-import { CircularProgressbar } from 'react-circular-progressbar';
 import envelope from "Assets/envelope.png";
+
 export default function AfterSubmittion({ percenatge }) {
   const navigate = useNavigate();
   return (
@@ -11,8 +11,17 @@ export default function AfterSubmittion({ percenatge }) {
         <div className="m-auto">
           <div className="grid">
             <div className='m-auto'>
-              <div className='w-[80px] h-[80px] mb-3'>
-                <CircularProgressbar value={percenatge} text={`${parseFloat(percenatge).toFixed(1)}%`} />
+              <div className='mb-3'>
+                <RedialProgresBar props={
+                  {
+                    textClassName: 'text-[18px] text-[#34B53A] font-semibold ',
+                    bg: 'bg-[#E2FBD7]',
+                    content: 'text-[#34B53A]',
+                    borderWidth: 'border-4',
+                    border: 'border-[#E2FBD7]',
+                    size: '8rem'
+                  }
+                } value={28} />
               </div>
             </div>
           </div>
