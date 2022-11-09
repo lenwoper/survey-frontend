@@ -4,27 +4,13 @@ import { type } from 'utils/commonutils';
 import { FormProvider, useForm, Controller } from "react-hook-form";
 import AfterSubmittion from '../AfterSubmittion/AfterSubmittion';
 import toast from 'react-hot-toast';
-import { useFetch } from 'hooks';
+
 
 const SurveyForm = () => {
   const [formUnit, SetFormUnit] = React.useState(1);
   const [progressTracking, SetProgressTracking] = React.useState(0);
   const methods = useForm({
     mode: "all"
-  });
-  const onSuccess = React.useCallback((response) => {
-    console.log(response, "survery success  msg ")
-  }, []);
-
-  const onFailure = React.useCallback((errors) => {
-    console.log(errors, "survery error ")
-  }, []);
-
-  const { isLoading, data } = useFetch({
-    initialUrl: "/surveys",
-    skipOnStart: false,
-    onFailure,
-    onSuccess,
   });
 
   const { control, handleSubmit,
@@ -35,14 +21,12 @@ const SurveyForm = () => {
     SetFormUnit(e + 1)
   }
   const onSubmit = (data) => {
-
     const formValue = new FormData();
     for (const [key, value] of Object.entries(data)) {
       if (value) {
         formValue.append(key, value);
       }
     }
-    // from data tracking has been done 
     SetProgressTracking(progressTracking + 1);
     formUnitFunction(formUnit);
   }
@@ -148,12 +132,13 @@ const SurveyForm = () => {
     if (formData.length < formUnit) {
       toast.custom((t) => (<components.Notification t={t} link={'/subscribe'} />))
     }
-  }, [formData.length, formUnit])
+  }, [formData.length, formUnit]);
+
 
   return (
     <div>
       {
-        isLoading ? (
+        false ? (
           <components.Loader />
         ) :
           formData.length > 0 && (

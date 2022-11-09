@@ -1,3 +1,4 @@
-export const AUTH_TOKEN = 'AUTH_TOKEN';
-export const USER_DETAILS = 'USER_DETAILS';
+
+export const AUTH_TOKEN = 'SURVEY_AUTH_TOKEN';
+export const USER_DETAILS = 'SURVEY_USER_DETAIL';
 

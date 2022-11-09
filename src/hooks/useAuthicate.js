@@ -4,14 +4,15 @@ import { useFetch } from 'hooks';
 import { AUTH_TOKEN, USER_DETAILS } from "constants/localstorageconst";
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-
 /*
  * session 
  * isloading login
  * verify otp 
  * reset password 
  * logout 
+ * 
  */
+
 export const useAuth = () => {
   const navigate = useNavigate()
   const { getData, setData } = useLocalStorage();
